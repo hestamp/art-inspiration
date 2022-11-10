@@ -10,7 +10,7 @@ const Collection = ({ name, images }) => {
         <img className="collection__mini" src={images[3]} alt="Item" />
       </div>
       <div className="names">
-        <h4>{name}</h4>
+        <h5>{name}</h5>
       </div>
     </div>
   )

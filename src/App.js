@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import Collection from './components/Collection'
 import Slider from './components/Slider'
 import './index.scss'
+import { RiMenuFill } from 'react-icons/ri'
+import { VscAccount } from 'react-icons/vsc'
+import Footer from './components/Footer'
 
 function App() {
   const categ = [
@@ -17,15 +20,28 @@ function App() {
   const [isLoading, setIsLoading] = useState(true)
   const [input, setInput] = useState('')
   const [data, setData] = useState([])
+  const [topPhoto, setTopPhoto] = useState([])
+  const [topLoading, setTopLoading] = useState(true)
   const lastElement = useRef()
   const observer = useRef()
+
+  useEffect(() => {
+    setTopLoading(true)
+    fetch(`https://63683148edc85dbc84e35905.mockapi.io/top`)
+      .then((res) => res.json())
+      .then((json) => {
+        setTopPhoto(json)
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setTopLoading(false))
+  }, [])
 
   useEffect(() => {
     const myCategory = category ? `category=${category}` : ''
 
     setIsLoading(true)
     fetch(
-      `https://63683148edc85dbc84e35905.mockapi.io/Names?page=${page}&limit=10&${myCategory}`
+      `https://63683148edc85dbc84e35905.mockapi.io/Names?page=${page}&limit=10`
     )
       .then((res) => res.json())
       .then((json) => {
@@ -33,15 +49,14 @@ function App() {
       })
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false))
-  }, [category, page])
+  }, [category == 0, page])
 
   useEffect(() => {
     if (isLoading) return
     if (observer.current) observer.current.disconnect()
 
     const checkObserv = (ent, observer) => {
-      if (ent[0].isIntersecting) {
-        //SET LIMIT TOMORROW
+      if (ent[0].isIntersecting && data.length < 34) {
         setPage(page + 1)
         console.log('see this')
       }
@@ -56,8 +71,11 @@ function App() {
       <div className="names">
         <h1 className="headMe">ArtInspiration</h1>
       </div>
+      <RiMenuFill className="menu" />
+      <VscAccount className="acc" />
+
       <div className="sliderBlock">
-        <Slider />
+        <Slider topLoading={topLoading} topPhoto={topPhoto} />
       </div>
 
       <div className="App">
@@ -77,12 +95,15 @@ function App() {
               </li>
             ))}
           </ul>
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            className="search-input"
-            placeholder="Enter the name"
-          />
+          <div>
+            <label></label>
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              className="search-input"
+              placeholder="Enter the name"
+            />
+          </div>
         </div>
         <div className="content">
           {data
@@ -95,18 +116,8 @@ function App() {
           {isLoading && <h2>Loading...</h2>}
         </div>
         <div ref={lastElement}></div>
-        {/* <ul className="pagination">
-          {[...Array(3)].map((_, i) => (
-            <li
-              onClick={() => setPage(i + 1)}
-              className={page === i + 1 ? 'active' : ''}
-              key={i}
-            >
-              {i + 1}
-            </li>
-          ))}
-        </ul> */}
       </div>
+      <Footer />
     </>
   )
 }

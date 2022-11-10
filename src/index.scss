@@ -5,20 +5,25 @@ $primary-line-color: #ccc;
 
 body {
   margin: 0;
+  box-sizing: border-box;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fff;
+  background-color: #fcfcfc;
 }
 
-* {
-  box-sizing: border-box;
-}
+.MainApp {
+  margin: 20px auto;
+  width: 98%;
 
-.App {
-  margin: 50px auto;
-  width: 90%;
+  @media (max-width: 1250px) {
+    width: 97%;
+  }
+
+  @media (max-width: 600px) {
+    width: 95%;
+  }
 }
 
 h1 {
@@ -31,7 +36,7 @@ h1 {
 
   li {
     display: inline-block;
-    padding: 7px 14px;
+    padding: 7px 15px;
     background-color: #e2dfdf;
     border-radius: 10px;
     margin-right: 10px;
@@ -48,7 +53,7 @@ h1 {
 
     &.active {
       background-color: #000;
-      color: #fff;
+      color: #fcfcfc;
     }
   }
 }
@@ -56,9 +61,9 @@ h1 {
 .content {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-column-gap: 30px;
+  grid-column-gap: 15px;
   grid-row-gap: 30px;
-  margin-top: 30px;
+  margin-top: 10px;
 
   @media (max-width: 1400px) {
     grid-template-columns: repeat(4, 1fr);
@@ -76,42 +81,84 @@ h1 {
     grid-template-columns: repeat(1, 1fr);
   }
 }
+.hrcss {
+  width: 99%;
+  color: rgb(177, 177, 173);
+}
 
 .headMe {
+  background-clip: text;
   background: linear-gradient(to right, rgb(120, 202, 235), rgb(177, 177, 173));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
-  color: #fff;
+  cursor: pointer;
+  color: #fcfcfc;
   border-radius: 10px;
-  top: -5px;
+  margin: 5px;
+  z-index: 1;
   position: relative;
   @media (max-width: 400px) {
-    font-size: 28px;
+    font-size: 25px;
+    top: 0px;
   }
 }
 
 .topMe {
+  font-family: 'Merriweather', serif;
   background-color: #e2dfdf;
-  padding: 5px;
-  border-radius: 10px;
-  z-index: -1;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 5px 15px 5px;
+  border-radius: 5px;
+  z-index: 1;
   margin: 0;
-  top: 30px;
+  top: 55px;
   position: relative;
 }
 
-.bigBoy {
-  align-items: center;
-  justify-content: center;
-  transition: all 0.15s ease-in-out;
-  cursor: pointer;
-  &:hover {
-    transform: translateY(-5px);
-  }
+h2,
+h5,
+h6 {
+  margin: 0;
 }
 .names {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0px 5px;
+}
+.postText {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px;
+}
+.likeView {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.avatar {
+  width: 25px;
+  border-radius: 100%;
+}
+.iconLW {
+  margin: 0 2px;
+  color: #696969;
+  &:hover {
+    color: rgb(120, 202, 235);
+    text-decoration: underline;
+  }
+}
+.statText {
+  margin: 0 2px;
+  color: #696969;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+}
+.best {
   display: flex;
   justify-content: center;
 }
@@ -122,29 +169,27 @@ h1 {
   max-width: 90%;
   margin: 20px auto;
   background-color: #e2dfdf;
-  padding: 15px;
-  border-radius: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 3px 0 rgba(0, 0, 0, 0.05);
 }
 
 .collection {
   max-width: 470px;
-  background-color: rgba(177, 177, 177, 0.486);
-  padding: 10px;
+  padding: 1px;
+  position: sticky;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0 3px 0 rgba(0, 0, 0, 0.05);
   cursor: pointer;
   transition: all 0.15s ease-in-out;
 
   h5 {
-    margin: 0;
     width: 100%;
-    margin-top: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
     text-align: center;
     font-size: 15px;
-    background-color: #fff;
     font-family: 'Merriweather', serif;
   }
 
@@ -163,36 +208,44 @@ h1 {
 
   &__big {
     height: 400px;
-    width: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    margin-bottom: 15px;
+    width: 98%;
+    margin: 1px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
   }
 
   &__bottom {
     display: flex;
+    margin: 1px;
     justify-content: space-between;
   }
 
   &__mini {
-    width: 31%;
-    height: 80px;
+    width: 32%;
+    height: 90px;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
+    border-radius: 3px;
   }
 }
 
+.loaderTop {
+  width: 99%;
+  height: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .topBox {
-  background-color: #fff;
-  padding: 5px;
-  border-radius: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: #fcfcfc;
+  padding: 1px;
+  border-radius: 5px;
+  border: 1px solid rgba(158, 196, 21, 0.2);
   box-shadow: 0 3px 0 rgba(0, 0, 0, 0.3);
   cursor: pointer;
   transition: all 0.15s ease-in-out;
 
   h4 {
-    margin: 0;
     font-size: 20px;
     font-family: 'Merriweather', serif;
   }
@@ -209,52 +262,74 @@ h1 {
   &__big {
     height: 390px;
     border: 1px solid rgba(0, 0, 0, 0.3);
-    width: 100%;
-    border-radius: 20px;
+    width: 99.5%;
+    border-radius: 5px;
   }
+}
+
+.topboxA {
+  box-shadow: 0 5px 0 #ffd90060;
+}
+.topboxB {
+  box-shadow: 0 5px 0 rgba(143, 143, 143, 0.438);
+}
+.topboxC {
+  box-shadow: 0 5px 0 #cd803279;
 }
 
 .menu {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   position: absolute;
-  top: 15px;
+  top: 10px;
   left: 15px;
   cursor: pointer;
+  &:hover {
+    color: rgb(120, 202, 235);
+  }
   @media (max-width: 400px) {
-    width: 30px;
-    height: 30px;
-    top: 16px;
-    left: 16px;
+    width: 25px;
+    height: 25px;
+    top: 10px;
+    left: 10px;
   }
 }
 .acc {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   position: absolute;
-  top: 15px;
+  top: 10px;
   right: 15px;
   cursor: pointer;
+  &:hover {
+    color: rgb(120, 202, 235);
+  }
   @media (max-width: 400px) {
-    width: 30px;
-    height: 30px;
-    top: 16px;
-    right: 16px;
+    width: 25px;
+    height: 25px;
+    top: 10px;
+    right: 10px;
   }
 }
 
-.top {
+.tops {
   display: flex;
-
+  margin: 0 5px;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
 }
 
+.soInput {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .search-input {
   font-size: 16px;
   width: 250px;
-  height: 50px;
+  height: 40px;
   padding: 0 15px;
   border-radius: 10px;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -263,132 +338,5 @@ h1 {
 
   &:focus {
     border: 1px solid rgba(0, 0, 0, 0.4);
-  }
-}
-
-.footerBox {
-  font: 11px 'Open Sans', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  margin: auto;
-  display: flex;
-  flex-flow: column nowrap;
-  box-sizing: border-box;
-  justify-content: space-between;
-}
-ul {
-  list-style: none;
-}
-a {
-  text-decoration: none;
-}
-.generic-anchor {
-  color: $primary-light-blue;
-  &:visited {
-    color: $primary-light-blue;
-  }
-  &:hover {
-    color: $primary-line-color;
-  }
-}
-.flex-rw {
-  display: flex;
-  flex-flow: row wrap;
-}
-main {
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font: 10em 'Oswald', sans-serif;
-  color: rgb(155, 155, 155);
-  line-height: 1;
-}
-footer {
-  margin-top: auto;
-  width: 100%;
-}
-.footer-list-top {
-  width: 33.333%;
-}
-.footer-list-top > li {
-  text-align: center;
-  padding-bottom: 10px;
-}
-.footer-list-header {
-  color: rgb(161, 161, 161);
-  font: 2.3vw 'Oswald', sans-serif;
-}
-.footer-list-anchor {
-  font: 1.3em 'Open Sans', sans-serif;
-}
-.footer-bottom-section {
-  width: 100%;
-  padding: 10px;
-  justify-content: center;
-  border-top: 1px solid $primary-line-color;
-}
-
-.footer-bottom-wrapper {
-  font-size: 1.5em;
-  color: rgb(155, 155, 155);
-}
-.footer-address {
-  display: inline;
-  font-style: normal;
-}
-@media only screen and (max-width: 768px) {
-  .footer-list-header {
-    font-size: 2em;
-  }
-  .footer-list-anchor {
-    font-size: 1.1em;
-  }
-  .footer-social-connect {
-    font-size: 2.5em;
-  }
-  .footer-social-overlap > a {
-    font-size: 2.24em;
-  }
-  .footer-bottom-wrapper {
-    font-size: 1.3em;
-  }
-}
-@media only screen and (max-width: 568px) {
-  main {
-    font-size: 5em;
-  }
-  .footer-list-top {
-    width: 100%;
-  }
-  .footer-list-header {
-    font-size: 3em;
-  }
-  .footer-list-anchor {
-    font-size: 1.5em;
-  }
-  .footer-bottom-section {
-    padding: 0 5px 10px 5px;
-  }
-  .footer-bottom-wrapper {
-    text-align: center;
-    width: 100%;
-    margin-top: 10px;
-  }
-}
-@media only screen and (max-width: 480px) {
-  .footer-bottom-rights {
-    display: block;
-  }
-}
-@media only screen and (max-width: 320px) {
-  .footer-list-header {
-    font-size: 2.2em;
-  }
-  .footer-list-anchor {
-    font-size: 1.2em;
-  }
-  .footer-bottom-wrapper {
-    font-size: 1.3em;
   }
 }

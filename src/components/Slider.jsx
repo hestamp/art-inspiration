@@ -1,5 +1,5 @@
 import React from 'react'
-import BigBoy from '../skeleton/BigBoy'
+import Loader from './loader/Loader'
 import TopBox from './TopBox.jsx'
 
 const Slider = ({ topLoading, topPhoto }) => {
@@ -28,26 +28,25 @@ const Slider = ({ topLoading, topPhoto }) => {
       : `98%`
 
   return (
-    <div>
-      <div className="names">
-        <h3 className="topMe">Best of the Week</h3>
+    <div className="topBlock">
+      <div className="best">
+        <h3 className="topMe">WeekTop</h3>
       </div>
       <div className="slider">
         {topLoading ? (
-          <>
-            <BigBoy wid={wid} />
-            <BigBoy wid={wid} />
-            <BigBoy wid={wid} />
-            <BigBoy wid={wid} />
-          </>
+          <Loader />
         ) : (
           topPhoto.map(
             (one, ind) =>
               ind < rendTop && (
                 <TopBox
+                  avatar={one.avatar}
+                  likes={one.likes}
+                  views={one.views}
+                  ind={ind}
                   width={wid}
                   key={one.name}
-                  name={one.name}
+                  author={one.author}
                   photo={one.photo}
                 />
               )

@@ -1,85 +1,39 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
+
+import Layout from './components/layout'
+import MyModal from './components/modal/MyModal'
+import { AuthContext, ModalContext } from './context'
 import './index.scss'
-import Slider from './components/Slider'
+import Login from './pages/Login'
+import AppRouter from './router/AppRouter'
 
-import Headers from './components/Headers'
-import MainApp from './components/MainApp'
-
-function App() {
-  const categ = [
-    { name: 'Popular' },
-    { name: 'Sea' },
-    { name: 'Mountain' },
-    { name: 'Architecture' },
-    { name: 'Cities' },
-  ]
-
-  const [page, setPage] = useState(1)
-  const [category, setCategory] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
-  const [search, setSearch] = useState('')
-  const [data, setData] = useState([])
-  const [topPhoto, setTopPhoto] = useState([])
-  const [topLoading, setTopLoading] = useState(true)
-  const lastElement = useRef()
-  const observer = useRef()
-
-  useEffect(() => {
-    setTopLoading(true)
-    fetch(`https://63683148edc85dbc84e35905.mockapi.io/HestampTop`)
-      .then((res) => res.json())
-      .then((json) => {
-        setTopPhoto(json)
-      })
-      .catch((err) => console.log(err))
-      .finally(() => setTopLoading(false))
-  }, [])
-
-  useEffect(() => {
-    const myCategory = category ? `category=${category}` : ''
-
-    setIsLoading(true)
-    fetch(
-      `https://63683148edc85dbc84e35905.mockapi.io/HestampAll?page=${page}&limit=10`
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        setData([...data, ...json])
-      })
-      .catch((err) => console.log(err))
-      .finally(() => setIsLoading(false))
-  }, [category == 0, page])
-
-  useEffect(() => {
-    if (isLoading) return
-    if (observer.current) observer.current.disconnect()
-
-    const checkObserv = (ent, observer) => {
-      if (ent[0].isIntersecting && data.length < 34) {
-        setPage(page + 1)
-        console.log('see this')
-      }
-    }
-
-    observer.current = new IntersectionObserver(checkObserv)
-    observer.current.observe(lastElement.current)
-  }, [isLoading])
-
+const App = () => {
+  const [isAuth, setIsAuth] = useState(false)
+  const [modal, setModal] = useState(false)
+  const [logSign, setLogSign] = useState(false)
   return (
-    <>
-      <Headers />
-      <Slider topLoading={topLoading} topPhoto={topPhoto} />
-      <MainApp
-        categ={categ}
-        setCategory={setCategory}
-        category={category}
-        search={search}
-        setSearch={setSearch}
-        data={data}
-        isLoading={isLoading}
-        lastElement={lastElement}
-      />
-    </>
+    <AuthContext.Provider
+      value={{
+        isAuth,
+        setIsAuth,
+      }}
+    >
+      <ModalContext.Provider
+        value={{
+          modal,
+          setModal,
+          setLogSign,
+          logSign,
+        }}
+      >
+        <Layout>
+          <AppRouter />
+        </Layout>
+        <MyModal visible={modal} setVisible={setModal}>
+          <Login />
+        </MyModal>
+      </ModalContext.Provider>
+    </AuthContext.Provider>
   )
 }
 

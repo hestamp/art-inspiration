@@ -83,12 +83,58 @@ h1 {
 }
 .hrcss {
   width: 99%;
+  height: 1px;
   color: rgb(177, 177, 173);
+}
+
+.navBar {
+  z-index: 1;
+}
+
+.linkReact {
+  color: #161616;
+}
+.linkLink {
+  color: #2f94bd;
+  margin: 0;
+  margin-left: 5px;
+  padding: 0;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.bgOverlay {
+  z-index: -1;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.logo {
+  margin: 5px;
+  width: 230px;
+  height: 45px;
+  cursor: pointer;
+  @media (max-width: 400px) {
+    width: 200px;
+    height: 40px;
+  }
 }
 
 .headMe {
   background-clip: text;
-  background: linear-gradient(to right, rgb(120, 202, 235), rgb(177, 177, 173));
+  background: linear-gradient(to right, #78caeb, #b1b1ad);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   cursor: pointer;
@@ -108,9 +154,9 @@ h1 {
   background-color: #e2dfdf;
   padding: 5px 15px 5px;
   border-radius: 5px;
-  z-index: 1;
+  z-index: 0;
   margin: 0;
-  top: 55px;
+  top: 25px;
   position: relative;
 }
 
@@ -294,6 +340,7 @@ h6 {
     left: 10px;
   }
 }
+
 .acc {
   width: 30px;
   height: 30px;
@@ -309,6 +356,140 @@ h6 {
     height: 25px;
     top: 10px;
     right: 10px;
+  }
+}
+
+.loginBlock {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background: white;
+  padding: 20px 20px 0;
+  width: 350px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 5px 10px 0 rgba(255, 255, 255, 0.438),
+    0 6px 10px 0 rgba(248, 248, 248, 0.5);
+}
+
+.joinA {
+  margin-bottom: 10px;
+}
+
+.btnBlock {
+  padding: 10px;
+  display: flex;
+  width: 95%;
+  flex-direction: column;
+}
+.orBlock {
+  display: flex;
+  align-items: center;
+  width: 90%;
+}
+
+.btnl {
+  margin: 7px;
+  display: flex;
+  padding: 7px;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid rgba($color: #000000, $alpha: 0.1);
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: #dad8d81e;
+  }
+  &_cont {
+    margin: 7px;
+    display: flex;
+    padding: 10px;
+    font-weight: 500;
+    color: #fff;
+    justify-content: center;
+    background-color: #fff;
+    border: 1px solid rgba($color: #000000, $alpha: 0.1);
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #78caeb;
+    &:hover {
+      background-color: #6cb7d4;
+    }
+  }
+}
+
+.iconL {
+  justify-self: left;
+  right: 50px;
+  position: relative;
+  margin-left: 7px;
+  height: 20px;
+  width: 20px;
+
+  &__fb {
+    color: #4267b2;
+    height: 20px;
+    right: 40px;
+    position: relative;
+    width: 20px;
+    margin-left: 7px;
+  }
+}
+
+.loginP {
+  padding: 5px;
+  margin: 0;
+  font-weight: 500;
+  font-size: 16px;
+  color: rgb(31, 31, 31);
+}
+
+.regs {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.littleP {
+  font-size: 15px;
+  margin: 5px;
+}
+.inputNgo {
+  display: flex;
+  width: 95%;
+  flex-direction: column;
+}
+
+.inputMail {
+  padding: 13px;
+  margin: 7px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.rememberForgot {
+  display: flex;
+  padding: 0 5px;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.joinBtn {
+  position: absolute;
+  top: 10px;
+  cursor: pointer;
+  right: 15px;
+  background-color: #78caeb;
+  border: none;
+  padding: 10px;
+  color: white;
+  border-radius: 10px;
+  &:hover {
+    background-color: #6cb7d4;
   }
 }
 

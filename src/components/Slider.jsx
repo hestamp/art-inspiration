@@ -45,7 +45,7 @@ const Slider = ({ topLoading, topPhoto }) => {
                   views={one.views}
                   ind={ind}
                   width={wid}
-                  key={one.name}
+                  key={ind}
                   author={one.author}
                   photo={one.photo}
                 />
